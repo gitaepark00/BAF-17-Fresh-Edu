@@ -10,18 +10,46 @@ from Ipython.display import set_matplotlib_formats
 
 pd.read_csv("data/상가(상권)정보_의료기관_201909.csv", low_memory=False)
 df.shape
+df.head()
+df.tail(10)
+df.sample()
+df.info()
 
 # pandas 모듈, read_csv() 코드활용
 # 자료의 시각화관련  (글꼴)
 # 데이터 구조파악/요약하는 방법 (tail, head 함수활용)
 
 2. 결측치 다루기
+df.isnull()
+df.isnull().sum()
+null_count.plot()
+null_count.plot.bar()
+df_null_count=null_count.reset_index()
+df_null_count.head()
+
+df_null_count.columns=["칼럼명","결측치수"]
+df_null_count.head()
+df_null_count.sort_values(by="결측치수")
+df_null_count.sort_values(by="결측치수",ascending=False).head(10)
+
+df["지점명"].head()
+drop_columns=df_null_count_top["칼럼명"].tolist()
+df[drop_columns].head()
+df.drop(drop_columns,axis=1)
+print(df.shape)
+df.info()
 
 # 기본 그래프 그리기 (x축 옵션 설정)
 # 데이터 프레임으로 변환, 칼럼명변환하여 결측치확인
 # 결측치 제거 (df.drop())
 
 3. 기초 통계값 확인하기
+df.dtypes
+df["위도"].mean()
+df["위도"].median()
+df["위도"].max()
+df["위도"].min()
+df["위도"].()
 
 # df[].()을 활용하여 데이터타입, 평균 중앙값 등 기초 통계량을구할 수 있음
 # descibe() 함수를 통해 한번에 요약된 표 출력가능
